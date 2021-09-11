@@ -2,16 +2,14 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { BarsController } from './bars/bars.controller';
-import { BarsService } from './bars/bars.service';
-import { Bar, BarSchema } from './schemas/bar.schema';
+import { BarsModule } from './bars/bars.modules';
 
 @Module({
   imports: [
     MongooseModule.forRoot('mongodb://localhost:27017/cigarettes'), 
-    MongooseModule.forFeature([{ name: Bar.name, schema: BarSchema }]),
+    BarsModule,
   ],
-  controllers: [AppController, BarsController],
-  providers: [AppService, BarsService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}

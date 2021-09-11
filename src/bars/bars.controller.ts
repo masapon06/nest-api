@@ -1,5 +1,4 @@
 import { Body, Controller, Get, HttpStatus, Param, Post, Res } from '@nestjs/common'
-import { Response } from 'express'
 import { BarsService } from './bars.service'
 import { CreateBarDto } from './dto/create-bar.dto'
 import { Bar } from './interfaces/bar.interface'
