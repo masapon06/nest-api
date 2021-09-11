@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpStatus, Param, Post, Res } from '@nestjs/common'
+import { Body, Controller, Get, HttpStatus, Param, Post, Query, Res } from '@nestjs/common'
 import { BarsService } from './bars.service'
 import { CreateBarDto } from './dto/create-bar.dto'
 import { Bar } from './interfaces/bar.interface'
@@ -13,8 +13,12 @@ export class BarsController {
     }
 
     @Get()
-    async findAll(): Promise<Bar[]> { // MEMO: reqを受け取りたいとき => findAll(@Req() request: Request)
-        return this.barsService.findAll()
+    async findAll(
+        @Query('name') name, 
+        @Query('paper') paper: boolean,
+        @Query('iqos') iqos: boolean,
+        @Query('vape') vape: boolean,
+    ): Promise<Bar[]> {
+        return this.barsService.findAll(name, paper, iqos, vape)
     }
-    
 }
