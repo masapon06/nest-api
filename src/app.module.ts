@@ -3,7 +3,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { BarsModule } from './bars/bars.modules';
-import { CommentsModule } from './comments/comment.module';
+import { CommentsModule } from './comments/comments.module';
 
 @Module({
   imports: [

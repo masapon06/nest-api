@@ -1,5 +1,5 @@
 import { Body, Controller, Get, HttpStatus, Param, Post, Res } from '@nestjs/common'
-import { CommentsService } from './comment.service'
+import { CommentsService } from './comments.service'
 import { CreateCommentDto } from './dto/create-comment.dto'
 
 @Controller('comments')
