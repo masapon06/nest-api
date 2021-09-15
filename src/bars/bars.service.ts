@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { Bar, BarDocument } from "src/schemas/bar.schema";
-import { CreateBarDto } from "./dto/create-bar.dto";
+import { CreateBarDto } from "../dto/create-bar.dto";
 
 @Injectable()
 export class BarsService {

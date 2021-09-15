@@ -1,10 +1,10 @@
-import { Prop, Schema as SchemaType, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
 import { Bar } from './bar.schema';
 
 export type CommentDocument = Comment & mongoose.Document
 
-@SchemaType()
+@Schema()
 export class Comment {
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Bar' })
     bar: Bar

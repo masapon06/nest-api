@@ -1,10 +1,10 @@
-import { Prop, Schema as SchemaType, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
 import { Comment } from 'src/schemas/comment.schema'
 
 export type BarDocument = Bar & mongoose.Document
 
-@SchemaType()
+@Schema()
 export class Bar {
     @Prop()
     name: string
