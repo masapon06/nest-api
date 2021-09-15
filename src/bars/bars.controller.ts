@@ -1,6 +1,6 @@
 import { Body, Controller, Get, HttpStatus, Param, Post, Query, Res } from '@nestjs/common'
 import { BarsService } from './bars.service'
-import { CreateBarDto } from './dto/create-bar.dto'
+import { CreateBarDto } from '../dto/create-bar.dto'
 import { Bar } from './interfaces/bar.interface'
 
 @Controller('bars')

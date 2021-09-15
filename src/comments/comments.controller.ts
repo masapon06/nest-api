@@ -1,6 +1,6 @@
 import { Body, Controller, Get, HttpStatus, Param, Post, Res } from '@nestjs/common'
 import { CommentsService } from './comments.service'
-import { CreateCommentDto } from './dto/create-comment.dto'
+import { CreateCommentDto } from '../dto/create-comment.dto'
 
 @Controller('comments')
 export class CommentsController {
@@ -8,7 +8,8 @@ export class CommentsController {
 
     @Post()
     async create(@Body() createCommentDto: CreateCommentDto) {
-        this.commentsService.create(createCommentDto)
+        const createdCommnet = await this.commentsService.create(createCommentDto)
+        await this.commentsService.findByIdAndUpdate(createdCommnet)
     }
     
 }
