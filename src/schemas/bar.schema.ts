@@ -7,6 +7,9 @@ export type BarDocument = Bar & mongoose.Document
 @Schema()
 export class Bar {
   @Prop()
+  _id: mongoose.Schema.Types.ObjectId
+
+  @Prop()
   name: string
 
   @Prop()
