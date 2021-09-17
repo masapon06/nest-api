@@ -13,7 +13,7 @@ export class BarsService {
     return createdBar.save()
   }
 
-  async findAll(name, paperCigarette, iqos, vape): Promise<Bar[]> {
+  async index(name, paperCigarette, iqos, vape): Promise<Bar[]> {
     const filter: {
       name?: RegExp
       isPaperCigarette?: boolean
@@ -26,6 +26,22 @@ export class BarsService {
     if (iqos === 'true') filter.isIQos = true
     if (vape === 'true') filter.isVape = true
 
-    return this.barModel.find(filter).exec()
+    try {
+        return await this.barModel
+        .find(filter)
+    } catch (error) {
+        return error
+    }
+  }
+
+  async find(param): Promise<Bar> {
+    try { 
+        const res = await this.barModel
+        .findById(param.id)
+        .populate('comments')
+        return res
+    } catch (error) {
+        return error
+    }
   }
 }
