@@ -29,6 +29,12 @@ export class Bar {
 
   @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }] })
   comments: Comment[]
+
+  @Prop()
+  createdAt: Date
+
+  @Prop()
+  updatedAt: Date
 }
 
 export const BarSchema = SchemaFactory.createForClass(Bar)

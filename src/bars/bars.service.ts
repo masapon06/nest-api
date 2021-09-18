@@ -26,10 +26,12 @@ export class BarsService {
     if (iqos === 'true') filter.isIQos = true
     if (vape === 'true') filter.isVape = true
 
-    return await this.barModel.find(filter).exec()
+    const bars = await this.barModel.find(filter).exec()
+    return bars
   }
 
   async findById(param): Promise<Bar> {
-    return await this.barModel.findById(param.id).populate('comments').lean()
+    const bar = await this.barModel.findById(param.id).populate('comments').lean()
+    return bar
   }
 }

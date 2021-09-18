@@ -9,6 +9,7 @@ export class CommentsController {
   @Post()
   async create(@Body() createCommentDto: CreateCommentDto) {
     const createdComment = await this.commentsService.create(createCommentDto)
-    await this.commentsService.findByIdAndUpdate(createdComment)
+    const updatedComment = await this.commentsService.findByIdAndUpdate(createdComment)
+    return updatedComment
   }
 }

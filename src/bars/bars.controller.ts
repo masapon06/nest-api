@@ -20,17 +20,13 @@ export class BarsController {
     @Query('iqos') iqos: boolean,
     @Query('vape') vape: boolean
   ): Promise<Bar[]> {
-    return this.barsService.find(name, paper, iqos, vape)
+    const bars = await this.barsService.find(name, paper, iqos, vape)
+    return bars
   }
 
   @Get(':id')
   async findById(@Param() params): Promise<Bar> {
-    try {
-      const res = await this.barsService.findById(params)
-      console.log(res)
-      return res
-    } catch (err) {
-      return err
-    }
+    const bar = await this.barsService.findById(params)
+    return bar
   }
 }
