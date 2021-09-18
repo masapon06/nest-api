@@ -1,4 +1,11 @@
-import { Body, Controller, Get, Param, Post, ValidationPipe } from '@nestjs/common'
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  ValidationPipe,
+} from '@nestjs/common'
 import { BarsService } from './bars.service'
 import { CreateBarDto } from '../dto/create-bar.dto'
 import { Query } from '@nestjs/common'
