@@ -1,9 +1,11 @@
-import * as mongoose from 'mongoose'
+import { IsNotEmpty, IsString } from 'class-validator'
 
 export class CreateCommentDto {
-  _id: mongoose.Schema.Types.ObjectId
-  bar: mongoose.Schema.Types.ObjectId
+  @IsNotEmpty()
+  @IsString()
+  bar: string
+
+  @IsNotEmpty()
+  @IsString()
   text: string
-  createdAt: Date
-  updatedAt: Date
 }

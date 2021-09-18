@@ -7,9 +7,6 @@ export type BarDocument = Bar & mongoose.Document
 @Schema()
 export class Bar {
   @Prop()
-  _id: mongoose.Schema.Types.ObjectId
-
-  @Prop()
   name: string
 
   @Prop()
@@ -32,6 +29,12 @@ export class Bar {
 
   @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }] })
   comments: Comment[]
+
+  @Prop()
+  createdAt: Date
+
+  @Prop()
+  updatedAt: Date
 }
 
 export const BarSchema = SchemaFactory.createForClass(Bar)

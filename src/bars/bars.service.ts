@@ -9,11 +9,15 @@ export class BarsService {
   constructor(@InjectModel(Bar.name) private barModel: Model<BarDocument>) {}
 
   async create(createBarDto: CreateBarDto): Promise<Bar> {
-    const createdBar = new this.barModel(createBarDto)
+    const createdBar = new this.barModel({
+      ...createBarDto,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    })
     return createdBar.save()
   }
 
-  async index(name, paperCigarette, iqos, vape): Promise<Bar[]> {
+  async find(name, paperCigarette, iqos, vape): Promise<Bar[]> {
     const filter: {
       name?: RegExp
       isPaperCigarette?: boolean
@@ -26,22 +30,12 @@ export class BarsService {
     if (iqos === 'true') filter.isIQos = true
     if (vape === 'true') filter.isVape = true
 
-    try {
-        return await this.barModel
-        .find(filter)
-    } catch (error) {
-        return error
-    }
+    const bars = await this.barModel.find(filter).exec()
+    return bars
   }
 
-  async find(param): Promise<Bar> {
-    try { 
-        const res = await this.barModel
-        .findById(param.id)
-        .populate('comments')
-        return res
-    } catch (error) {
-        return error
-    }
+  async findById(param): Promise<Bar> {
+    const bar = await this.barModel.findById(param.id).populate('comments').lean()
+    return bar
   }
 }

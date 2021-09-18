@@ -16,15 +16,20 @@ export class CommentsService {
   ) {}
 
   async create(createCommentDto: CreateCommentDto): Promise<Comment> {
-    const createdComment = new this.commentModel(createCommentDto)
-    return createdComment.save()
+    const comment = new this.commentModel({
+      ...createCommentDto,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }).save()
+    return comment
   }
 
   async findByIdAndUpdate(comment): Promise<Bar> {
-    return this.barModel.findByIdAndUpdate(
+    const updatedComment = this.barModel.findByIdAndUpdate(
       comment.bar,
       { $push: { comments: comment._id } },
       { new: true, useFindAndModify: false }
     )
+    return updatedComment
   }
 }
