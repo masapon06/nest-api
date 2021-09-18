@@ -35,7 +35,10 @@ export class BarsService {
   }
 
   async findById(param): Promise<Bar> {
-    const bar = await this.barModel.findById(param.id).populate('comments').lean()
+    const bar = await this.barModel
+      .findById(param.id)
+      .populate('comments')
+      .lean()
     return bar
   }
 }
