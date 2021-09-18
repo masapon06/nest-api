@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common'
+import { Body, Controller, Get, Param, Post, ValidationPipe } from '@nestjs/common'
 import { BarsService } from './bars.service'
 import { CreateBarDto } from '../dto/create-bar.dto'
 import { Query } from '@nestjs/common'
@@ -9,7 +9,7 @@ export class BarsController {
   constructor(private barsService: BarsService) {}
 
   @Post()
-  async create(@Body() createBarDto: CreateBarDto) {
+  async create(@Body(ValidationPipe) createBarDto: CreateBarDto) {
     this.barsService.create(createBarDto)
   }
 
@@ -20,13 +20,13 @@ export class BarsController {
     @Query('iqos') iqos: boolean,
     @Query('vape') vape: boolean
   ): Promise<Bar[]> {
-    return this.barsService.index(name, paper, iqos, vape)
+    return this.barsService.find(name, paper, iqos, vape)
   }
 
   @Get(':id')
-  async find(@Param() params): Promise<Bar> {
+  async findById(@Param() params): Promise<Bar> {
     try {
-      const res = await this.barsService.find(params)
+      const res = await this.barsService.findById(params)
       console.log(res)
       return res
     } catch (err) {

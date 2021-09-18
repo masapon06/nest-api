@@ -16,8 +16,8 @@ export class CommentsService {
   ) {}
 
   async create(createCommentDto: CreateCommentDto): Promise<Comment> {
-    const createdComment = new this.commentModel(createCommentDto)
-    return createdComment.save()
+    const comment = new this.commentModel().save()
+    return comment
   }
 
   async findByIdAndUpdate(comment): Promise<Bar> {
