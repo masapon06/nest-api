@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpStatus, Param, Post, Res } from '@nestjs/common'
+import { Body, Controller, Post, ValidationPipe } from '@nestjs/common'
 import { CommentsService } from './comments.service'
 import { CreateCommentDto } from '../dto/create-comment.dto'
 
@@ -7,7 +7,7 @@ export class CommentsController {
   constructor(private commentsService: CommentsService) {}
 
   @Post()
-  async create(@Body() createCommentDto: CreateCommentDto) {
+  async create(@Body(ValidationPipe) createCommentDto: CreateCommentDto) {
     const createdComment = await this.commentsService.create(createCommentDto)
     await this.commentsService.findByIdAndUpdate(createdComment)
   }
