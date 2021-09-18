@@ -9,7 +9,11 @@ export class BarsService {
   constructor(@InjectModel(Bar.name) private barModel: Model<BarDocument>) {}
 
   async create(createBarDto: CreateBarDto): Promise<Bar> {
-    const createdBar = new this.barModel(createBarDto)
+    const createdBar = new this.barModel({
+      ...createBarDto,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    })
     return createdBar.save()
   }
 

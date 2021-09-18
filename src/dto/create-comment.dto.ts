@@ -1,5 +1,4 @@
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator'
-import * as mongoose from 'mongoose'
+import { IsNotEmpty, IsString } from 'class-validator'
 
 export class CreateCommentDto {
   @IsNotEmpty()

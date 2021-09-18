@@ -16,7 +16,11 @@ export class CommentsService {
   ) {}
 
   async create(createCommentDto: CreateCommentDto): Promise<Comment> {
-    const comment = new this.commentModel(createCommentDto).save()
+    const comment = new this.commentModel({
+      ...createCommentDto,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }).save()
     return comment
   }
 
