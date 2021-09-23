@@ -17,7 +17,7 @@ export class BarsController {
 
   @Post()
   async create(@Body(ValidationPipe) createBarDto: CreateBarDto) {
-    this.barsService.create(createBarDto)
+    return this.barsService.create(createBarDto)
   }
 
   @Get()
